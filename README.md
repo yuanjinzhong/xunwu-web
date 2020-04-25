@@ -1,6 +1,7 @@
 # xunwu-mall
 该分支为xunwu前端商城
 
+使用https://www.iviewui.com/
 ## Project setup
 ```
 npm install
