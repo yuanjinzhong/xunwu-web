@@ -1,22 +1,33 @@
-import Vue from "vue";
-import ViewUI from "view-design";
-import "view-design/dist/styles/iview.css";
-import VueRouter from "vue-router";
-import App from "./App.vue";
-import routes from "./routes/routes";
-import axios from "axios";
+// with polyfills
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 
-Vue.config.productionTip = true;
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store/'
+import { VueAxios } from './utils/request'
 
-Vue.use(ViewUI);
+// mock
+// WARNING: `mockjs` NOT SUPPORT `IE` PLEASE DO NOT USE IN `production` ENV.
+import './mock'
 
-Vue.use(VueRouter);
+import bootstrap from './core/bootstrap'
+import './core/lazy_use'
+import './permission' // permission control
+import './utils/filter' // global filter
+import './components/global.less'
+import { Dialog } from '@/components'
 
-Vue.prototype.$ajax = axios;
+Vue.config.productionTip = false
 
-const router = new VueRouter({ routes });
+// mount axios Vue.$http and this.$http
+Vue.use(VueAxios)
+Vue.use(Dialog)
 
 new Vue({
   router,
+  store,
+  created: bootstrap,
   render: h => h(App)
-}).$mount("#app");
+}).$mount('#app')

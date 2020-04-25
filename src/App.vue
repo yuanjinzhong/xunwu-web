@@ -1,21 +1,24 @@
 <template>
-  <div id="app">
-    <!--    <topBar />-->
-    <router-view></router-view>
-    <!--<login />-->
-  </div>
+  <a-config-provider :locale="locale">
+    <div id="app">
+      <router-view/>
+    </div>
+  </a-config-provider>
 </template>
 
 <script>
-// import topBar from "./components/layout/TopBar";
-// import login from "./components/layout/Login";
+import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
+import { AppDeviceEnquire } from '@/utils/mixin'
 
 export default {
-  name: "app",
-  components: {
-    /*topBar,  login */
-  }
-};
-</script>
+  mixins: [AppDeviceEnquire],
+  data () {
+    return {
+      locale: zhCN
+    }
+  },
+  mounted () {
 
-<style scoped></style>
+  }
+}
+</script>
