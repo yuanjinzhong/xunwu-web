@@ -1,5 +1,7 @@
 # xunwu-vue-admin-vuetify
 
+依赖vuetify:https://vuetifyjs.com/zh-Hans/
+
 ## Project setup
 ```
 npm install
