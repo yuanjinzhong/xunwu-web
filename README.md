@@ -1,7 +1,7 @@
 # xunwu-vue-admin-vuetify
 该分支为xunwu后台管理系统vuetify实现
 
-依赖vuetify:https://vuetifyjs.com/zh-Hans/
+vuetify:https://vuetifyjs.com/zh-Hans/
 
 ## Project setup
 ```
