@@ -1,62 +1,38 @@
-import axios from "axios";
+import axios from 'axios'
+import Vue from 'vue'
 
-let base = "";
+Vue.use(axios);
 
-export const requestLogin = params => {
-  return axios.post(`http://www.baidu.com`, params).then(res => res.data);
+let base = "http://localhost:8083";
+
+//登录
+export const signIn = params => {
+    return axios.post(
+        `${base}` + "/login",
+        params,
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(res => res.data);
 };
 
-export const getUserList = params => {
-  return axios.get(`${base}/user/list`, { params: params });
-};
-
+//获取信息
 export const getUserListPage = params => {
-  return axios.get(`${base}/user/listpage`, { params: params });
+    return axios.get(`${base}/oauth/admin`, {params: params}).then(data => {
+        console.log(data)
+    }).catch(error => {
+        console.log(error)
+    });
 };
 
-export const removeUser = params => {
-  return axios.get(`${base}/user/remove`, { params: params });
-};
-
-export const batchRemoveUser = params => {
-  return axios.get(`${base}/user/batchremove`, { params: params });
-};
-
-export const editUser = params => {
-  return axios.get(`${base}/user/edit`, { params: params });
-};
-
-export const addUser = params => {
-  return axios.get(`${base}/user/add`, { params: params });
-};
-
-// export const houseTotal = () => {return instance.get(`http://localhost:8089/houseTotal`).then(res=>res.data)}; //return Promise对象
-// 1： then里面的匿名函数不能有{},
-//2：这里面可以不用then 因为返回的本身就是promis对象
-
-export const houseTotal = () => {
-  return axios({
-    method: "get",
-    url: "http://localhost:8089/api/house/houseTotal"
-  }).then(res => res.data);
-}; //return Promise对象
-
-/*该接口调db*/
-export const houseDetailsDb = params => {
-  return axios({
-    method: "post",
-    url: "http://localhost:8089/api/house/houseDatail/db",
-    data: {
-      keyword: params
-    }
-  }).then(res => res.data);
-};
-
-/*该接口查es*/
-export const houseDetailsEs = params => {
-  return axios({
-    method: "post",
-    url: "http://localhost:8089/api/house/houseDatail/es",
-    data: params
-  }).then(res => res.data);
-};
+//github登录
+export const gitHubLogin = () => {
+    //发起ajax请求会跨域
+   // return axios.get(`https://github.com/login/oauth/authorize?client_id=48f53fa0dae4f1aa1387&redirect_uri=http://localhost:8083/login/oauth2/code/github`)
+    //window.open不会有跨域问题
+    //这个地址后台的SpringSecurity会解析到,后台会自动重定向三方认证页面
+    window.open("http://localhost:8083/oauth2/authorization/github",
+        "github登陆",
+        "width=620,height=420,resizable,scrollbars=yes,status=1")
+}

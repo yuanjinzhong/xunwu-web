@@ -1,5 +1,4 @@
-# xunwu-mall
-该分支为xunwu前端商城
+# xunwu-vue-admin-vuetify
 
 ## Project setup
 ```
@@ -14,11 +13,6 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
 ```
 
 ### Lints and fixes files
